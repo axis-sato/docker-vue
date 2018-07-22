@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: ./
+      args:
+        - NODE_VERSION=${NODE_VERSION}
+        - APP_CONTAINER_PATH=${APP_CONTAINER_PATH}
+    volumes:
+      - ./:${APP_CONTAINER_PATH}
+    ports:
+      - ${APP_PORT}:8080

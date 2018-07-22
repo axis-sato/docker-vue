@@ -1,0 +1,18 @@
+ARG NODE_VERSION=${NODE_VERSION}
+FROM node:${NODE_VERSION}
+
+LABEL maintainer="c8112002"
+
+ARG APP_CONTAINER_PATH=${APP_CONTAINER_PATH}
+WORKDIR ${APP_CONTAINER_PATH}
+
+COPY package*.json yarn.lock ./
+
+RUN yarn install
+
+COPY . .
+
+ENV HOST 0.0.0.0
+EXPOSE 8080
+
+CMD ["yarn", "serve"]
